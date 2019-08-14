@@ -13,7 +13,7 @@ use yt_api::{
 fn main() {
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_Key env-var not found"));
 
-    // crate the SearchList struct for the query "rust lang"
+    // create the SearchList struct for the query "rust lang"
     let search_list = SearchList::new(key).q("rust lang".to_string());
 
     let future = async move {

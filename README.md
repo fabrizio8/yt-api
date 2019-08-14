@@ -5,9 +5,8 @@
 [![pipeline status](https://gitlab.com/nycex/yt-api/badges/master/build.svg)](https://gitlab.com/nycex/yt-api/pipelines)
 
 ## about
-YT-api is a asynchronous crate, with which you can interact with the youtube
-api.
-Currently is implements the following endpoints:
+YT-api is a asynchronous crate, with which you can interact with the youtube-api.
+Currently it implements the following endpoints:
  * search
  
 ## example
@@ -17,7 +16,7 @@ A basic search request with yt-api:
 fn main() {
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_Key env-var not found"));
 
-    // crate the SearchList struct for the query "rust lang"
+    // create the SearchList struct for the query "rust lang"
     let search_list = SearchList::new(key).q("rust lang".to_string());
 
     let future = async move {
