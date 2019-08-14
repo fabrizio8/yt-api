@@ -1,8 +1,9 @@
 [package]
 name = "yt-api"
-version = "0.1.0"
+version = "0.1.1"
 description = "a work in progress library to interact asynchronously with the youtube api"
 repository = "https://gitlab.com/nycex/yt-api"
+documentation = "https://docs.rs/yt-api"
 keywords = [ "youtube", "api", "async" ]
 readme = "README.md"
 license = "MIT"
@@ -22,3 +23,7 @@ chrono = {version = "0.4.7", features = [ "serde" ] }
 [dev-dependencies]
 futures-preview = { version = "0.3.0-alpha.17", features = [ "compat" ] }
 tokio = "0.1.22"
+
+[badges]
+gitlab = { repository = "nycex/yt-api", branch = "master" }
+maintenance = { status = "experimental" }
