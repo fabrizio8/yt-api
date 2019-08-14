@@ -6,7 +6,7 @@ use log::debug;
 use reqwest::r#async::Client;
 use serde::{Deserialize, Serialize};
 use snafu::{ResultExt, Snafu};
-use chrono::DateTime;
+use chrono::{Utc, DateTime};
 
 use super::ApiKey;
 
@@ -108,7 +108,7 @@ pub struct SearchResultId {
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SearchResultSnippet {
-    pub published_at: Option<DateTime>,
+    pub published_at: Option<DateTime<Utc>>,
     pub channel_id: Option<String>,
     pub title: Option<String>,
     pub description: Option<String>,
