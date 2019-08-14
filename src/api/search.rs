@@ -33,6 +33,7 @@ pub async fn perform(client: Client, query: &SearchList) -> Result<SearchListRes
     serde_json::from_str(&response).context(Deserialization { string: response })
 }
 
+/// custom error type for youtube searching
 #[derive(Debug, Snafu)]
 pub enum Error {
     #[snafu(display("failed to connect to the api: {}", source))]

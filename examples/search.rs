@@ -8,7 +8,6 @@ use yt_api::{
     ApiKey,
 };
 
-// TODO: make this and the example in the README use tokio 0.2
 /// prints the first answer of a search query
 fn main() {
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_Key env-var not found"));
