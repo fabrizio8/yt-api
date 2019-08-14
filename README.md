@@ -5,7 +5,7 @@
 [![pipeline status](https://gitlab.com/nycex/yt-api/badges/master/build.svg)](https://gitlab.com/nycex/yt-api/pipelines)
 
 ## about
-YT-api is a asynchronous crate, with which you can interact with the youtube-api.
+With yt-api you can interact asynchronously with the youtube-api.
 Currently it implements the following endpoints:
  * search
  

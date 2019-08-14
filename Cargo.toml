@@ -1,9 +1,9 @@
 [package]
 name = "yt-api"
 version = "0.1.0"
-description = "a library to interact with the youtube api"
+description = "a library to interact asynchronously with the youtube api"
 repository = "https://gitlab.com/nycex/yt-api"
-keywords = [ "youtube", "api" ]
+keywords = [ "youtube", "api", "async" ]
 readme = "README.md"
 license = "MIT"
 authors = ["nycex <nycex@protonmail.com>"]
