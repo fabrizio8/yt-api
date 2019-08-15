@@ -6,7 +6,7 @@
 //!
 //! ## Performing a search query
 //!
-//! To perform a search query, you can use the [`search`][search()] shortcut function.
+//! To perform a search query, you can use the [`perform`][search_perform] function on the [`SearchList`][search_list] query.
 //!
 //! ```rust
 //! # #![feature(async_await)]
@@ -18,27 +18,28 @@
 //! # };
 //! #
 //! # fn main() {
-//! let search_list = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang".to_string());
+//! let search_list = SearchList::builder().key(ApiKey::new("your-youtube-api-key")).q("rust lang".to_string()).build();
 //!
 //! let future = async move {
-//!     let result = yt_api::search(&search_list).await.unwrap();
+//!     let result = search_list.perform().await.unwrap();
 //! };
 //!
 //! tokio::run(future.unit_error().boxed().compat());
 //! # }
 //! ```
+//!
+//! [search_list]: ./search/struct.SearchList.html
+//! [search_perform]: ./search/struct.SearchList.html#method.perform
 
-mod api;
+pub mod search;
 
-use reqwest::r#async::Client;
-use std::result::Result;
+use serde::Serialize;
 
-pub use api::*;
+#[derive(Debug, Clone, Serialize)]
+pub struct ApiKey(String);
 
-/// shortcut function to search for a video, channel or playlist
-pub async fn search(
-    query: &search::SearchList,
-) -> Result<search::SearchListResponse, search::Error> {
-    let client = Client::new();
-    search::perform(client, query).await
+impl ApiKey {
+    pub fn new(key: &str) -> ApiKey {
+        ApiKey(key.into())
+    }
 }
