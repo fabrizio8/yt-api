@@ -12,7 +12,7 @@ fn main() {
     let search_list = SearchList::builder()
         .key(key)
         .q("rust lang".to_string())
-        .for_mine(false)
+        .channel_id("UCaYhcUwRBNscFNUKTjgPFiA".to_string())
         .build();
 
     let future = async move {
