@@ -3,7 +3,7 @@ use std::env;
 
 use futures::future::{FutureExt, TryFutureExt};
 use yt_api::{
-    search::{SearchItemType, SearchList, VideoLocation},
+    search::{ItemType, SearchList, VideoLocation},
     ApiKey,
 };
 
@@ -16,7 +16,7 @@ fn main() {
         .key(key)
         .q("rust lang".to_string())
         .max_results(1)
-        .search_type(SearchItemType::Video)
+        .item_type(ItemType::Video)
         .location(VideoLocation::new(40.73061, -73.93524))
         .location_radius("100km".to_string())
         .video_embeddable(true)

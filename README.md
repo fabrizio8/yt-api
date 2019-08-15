@@ -18,13 +18,20 @@ fn main() {
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_Key env-var not found"));
 
     // create the SearchList struct for the query "rust lang"
-    let search_list = SearchList::new(key).q("rust lang".to_string());
+    let search_list = SearchList::builder()
+        .key(key)
+        .q("rust lang".to_string())
+        .item_type(ItemType::Video)
+        .build();
 
     let future = async move {
         // perform the search
-        let result = search(&search_list).await.unwrap();
+        let result = search_list.perform().await.unwrap();
         // outputs the video_id of the first search result
-        println!("https://youtube.com/watch?v={}", result.items[0].id.video_id.as_ref().unwrap());
+        println!(
+            "https://youtube.com/watch?v={}",
+            result.items[0].id.video_id.as_ref().unwrap()
+        );
     };
 
     // run the future

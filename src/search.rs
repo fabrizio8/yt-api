@@ -94,7 +94,7 @@ pub struct SearchList {
     topic_id: Option<String>,
     #[builder(default)]
     #[serde(skip_serializing_if = "Option::is_none", rename = "type")]
-    search_type: Option<SearchItemType>,
+    item_type: Option<ItemType>,
     #[builder(default)]
     #[serde(skip_serializing_if = "Option::is_none")]
     video_caption: Option<String>,
@@ -208,7 +208,7 @@ pub enum SafeSearch {
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub enum SearchItemType {
+pub enum ItemType {
     Channel,
     Playlist,
     Video,
