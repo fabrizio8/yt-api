@@ -1,20 +1,19 @@
-#![feature(async_await)]
 use std::env;
 
 use futures::future::{FutureExt, TryFutureExt};
-use yt_api::{search::{ItemType, SearchList}, ApiKey};
+use yt_api::{
+    search::{ItemType, SearchList},
+    ApiKey,
+};
 
 /// prints the first answer of a search query
 fn main() {
-    let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_Key env-var not found"));
+    let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
 
     // create the SearchList struct for the query "rust lang"
-    let search_list = SearchList::builder()
-        .key(key)
-        .q("rust lang".to_string())
-        .item_type(ItemType::Video)
-        .channel_id("UCaYhcUwRBNscFNUKTjgPFiA".to_string())
-        .build();
+    let search_list = SearchList::new(key)
+        .q("rust lang")
+        .item_type(ItemType::Video);
 
     let future = async move {
         // perform the search

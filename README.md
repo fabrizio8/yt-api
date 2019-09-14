@@ -14,20 +14,24 @@ Currently it implements the following endpoints:
 A basic search request with yt-api:
 
 ``` rust
+/// prints the first answer of a search query
 fn main() {
-    let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_Key env-var not found"));
+    let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
 
     // create the SearchList struct for the query "rust lang"
-    let search_list = SearchList::builder()
-        .key(key)
-        .q("rust lang".to_string())
-        .item_type(ItemType::Video)
-        .build();
+    let search_list = SearchList::new(key)
+        .q("rust lang")
+        .item_type(ItemType::Video);
 
     let future = async move {
         // perform the search
         let result = search_list.perform().await.unwrap();
-        // outputs the video_id of the first search result
+        // outputs the title of the first search result
+        println!(
+            "Title: \"{}\"",
+            result.items[0].snippet.title.as_ref().unwrap()
+        );
+        // outputs the video id of the first search result
         println!(
             "https://youtube.com/watch?v={}",
             result.items[0].id.video_id.as_ref().unwrap()
