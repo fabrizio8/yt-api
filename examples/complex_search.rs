@@ -1,13 +1,13 @@
 use std::env;
 
-use futures::future::{FutureExt, TryFutureExt};
 use yt_api::{
-    search::{ItemType, SearchList, VideoLocation},
+    search::{Error, ItemType, SearchList, VideoLocation},
     ApiKey,
 };
 
 /// prints the first answer of a search query
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Error> {
     // take api key from enviroment variable
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
 
@@ -20,20 +20,17 @@ fn main() {
         .location_radius("100km")
         .video_embeddable();
 
-    let future = async move {
-        // perform the search
-        let result = search_list.perform().await.unwrap();
-        // outputs the video_id of the first search result
-        println!(
-            "Title: \"{}\"",
-            result.items[0].snippet.title.as_ref().unwrap()
-        );
-        println!(
-            "https://youtube.com/watch?v={}",
-            result.items[0].id.video_id.as_ref().unwrap()
-        );
-    };
+    // perform the search
+    let result = search_list.perform().await?;
+    // outputs the video_id of the first search result
+    println!(
+        "Title: \"{}\"",
+        result.items[0].snippet.title.as_ref().unwrap()
+    );
+    println!(
+        "https://youtube.com/watch?v={}",
+        result.items[0].id.video_id.as_ref().unwrap()
+    );
 
-    // run the future
-    tokio::run(future.unit_error().boxed().compat());
+    Ok(())
 }

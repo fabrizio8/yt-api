@@ -1,10 +1,6 @@
 use chrono::{DateTime, Utc};
-use futures::{
-    compat::{Future01CompatExt, Stream01CompatExt},
-    TryStreamExt,
-};
 use log::debug;
-use reqwest::r#async::Client;
+use reqwest::Client;
 use serde::{Deserialize, Serialize, Serializer};
 use snafu::{ResultExt, Snafu};
 
@@ -145,17 +141,9 @@ impl SearchList {
             serde_qs::to_string(&self).context(Serialization)?
         );
         debug!("getting {}", url);
-        let response = client.get(&url).send().compat().await.context(Connection)?;
+        let response = client.get(&url).send().await.context(Connection)?;
 
-        let chunks = response
-            .into_body()
-            .compat()
-            .try_concat()
-            .await
-            .context(Connection)?;
-        let response = String::from_utf8_lossy(&chunks);
-
-        serde_json::from_str(&response).context(Deserialization { string: response })
+        response.json().await.context(Connection)
     }
 
     pub fn for_content_owner(mut self) -> Self {
