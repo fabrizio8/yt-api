@@ -16,6 +16,7 @@ A basic search request with yt-api:
 ``` rust
 /// prints the first answer of a search query
 fn main() {
+    // take api key from enviroment variable
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
 
     // create the SearchList struct for the query "rust lang"
@@ -47,8 +48,7 @@ More examples can be found [here](examples).
 
 ## supported rust versions
 
-yt-api is currently only able to run on nightly, but as async/await will
-probably be stabilized in 1.38, this will be the required rust version.
+the minimum rust version for yt-api is 1.39
 
 ## license
 

@@ -93,7 +93,8 @@ pub struct SearchList {
 impl SearchList {
     const URL: &'static str = "https://www.googleapis.com/youtube/v3/search";
 
-    /// create struct with an `yt_api::ApiKey`
+    /// create struct with an [`ApiKey`](../struct.ApiKey.html)
+    ///
     pub fn new(key: ApiKey) -> SearchList {
         SearchList {
             key,

@@ -8,6 +8,7 @@ use yt_api::{
 
 /// prints the first answer of a search query
 fn main() {
+    // take api key from enviroment variable
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
 
     // create the SearchList struct for the query "rust lang"
