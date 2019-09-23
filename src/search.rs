@@ -1,6 +1,5 @@
 use chrono::{DateTime, Utc};
 use log::debug;
-use reqwest::Client;
 use serde::{Deserialize, Serialize, Serializer};
 use snafu::{ResultExt, Snafu};
 
@@ -10,7 +9,7 @@ use super::ApiKey;
 #[derive(Debug, Snafu)]
 pub enum Error {
     #[snafu(display("failed to connect to the api: {}", source))]
-    Connection { source: reqwest::Error },
+    Connection { source: surf::Exception },
     #[snafu(display("failed to deserialize: {} {}", string, source))]
     Deserialization {
         string: String,
@@ -127,23 +126,16 @@ impl SearchList {
         }
     }
 
-    /// shorthand to perform the search with implicit `reqwest::async::Client` creation
-    pub async fn perform(&self) -> Result<SearchListResponse, Error> {
-        let client = Client::new();
-        self.perform_with(client).await
-    }
-
     /// searches for a video, channel or playlist
-    pub async fn perform_with(&self, client: Client) -> Result<SearchListResponse, Error> {
+    pub async fn perform(&self) -> Result<SearchListResponse, Error> {
         let url = format!(
             "{}?{}",
             Self::URL,
             serde_qs::to_string(&self).context(Serialization)?
         );
         debug!("getting {}", url);
-        let response = client.get(&url).send().await.context(Connection)?;
-
-        response.json().await.context(Connection)
+        let response = surf::get(&url).recv_string().await.context(Connection)?;
+        serde_json::from_str(&response).with_context(move || Deserialization { string: response })
     }
 
     pub fn for_content_owner(mut self) -> Self {

@@ -13,11 +13,11 @@
 //! #     ApiKey,
 //! # };
 //! #
-//! # #[tokio::main]
+//! # #[runtime::main]
 //! # async fn main() {
 //! let search_list = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang");
 //!
-//! let result = search_list.perform().await.unwrap();
+//! let result = search_list.perform().await;
 //! # }
 //! ```
 //!

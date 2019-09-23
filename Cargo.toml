@@ -11,7 +11,6 @@ authors = ["nycex <nycex@protonmail.com>"]
 edition = "2018"
 
 [dependencies]
-reqwest = { git = "https://github.com/seanmonstar/reqwest" }
 snafu = "0.5.0"
 serde = { version = "1.0.100", features = [ "derive" ] }
 serde_qs = "0.5.0"
@@ -19,21 +18,12 @@ futures-preview = { version = "0.3.0-alpha.18", features = [ "compat" ] }
 serde_json = "1.0.40"
 log = "0.4.8"
 chrono = { version = "0.4.9", features = [ "serde" ] }
+surf = "1.0.2"
+runtime = "0.3.0-alpha.7"
 
 [dev-dependencies]
-futures-preview = { version = "0.3.0-alpha.18", features = [ "compat" ] }
-tokio = "0.2.0-alpha.4"
+futures-preview = { version = "0.3.0-alpha.18" }
 
 [badges]
 gitlab = { repository = "nycex/yt-api", branch = "master" }
 maintenance = { status = "experimental" }
-
-[patch.crates-io]
-# https://github.com/tokio-rs/tokio/issues/1546
-tokio = { git = "https://github.com/tokio-rs/tokio" }
-tokio-io = { git = "https://github.com/tokio-rs/tokio" }
-tokio-tls = { git = "https://github.com/tokio-rs/tokio" }
-tokio-codec = { git = "https://github.com/tokio-rs/tokio" }
-tokio-macros = { git = "https://github.com/tokio-rs/tokio" }
-tokio-executor = { git = "https://github.com/tokio-rs/tokio" }
-tokio-sync = { git = "https://github.com/tokio-rs/tokio" }

@@ -6,7 +6,7 @@ use yt_api::{
 };
 
 /// prints the first answer of a search query
-#[tokio::main]
+#[runtime::main]
 async fn main() -> Result<(), Error> {
     // take api key from enviroment variable
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
