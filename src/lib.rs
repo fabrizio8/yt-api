@@ -8,20 +8,16 @@
 //!
 //! ```rust
 //! # use std::env;
-//! # use futures::future::{FutureExt, TryFutureExt};
 //! # use yt_api::{
 //! #     search::SearchList,
 //! #     ApiKey,
 //! # };
 //! #
-//! # fn main() {
+//! # #[runtime::main]
+//! # async fn main() {
 //! let search_list = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang");
 //!
-//! let future = async move {
-//!     let result = search_list.perform().await.unwrap();
-//! };
-//!
-//! tokio::run(future.unit_error().boxed().compat());
+//! let result = search_list.perform().await;
 //! # }
 //! ```
 //!
