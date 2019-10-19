@@ -26,7 +26,7 @@ async fn main() -> Result<(), Error> {
         .item_type(ItemType::Video);
 
     // perform the search
-    let result = search_list.perform().await?;
+    let result = search_list.await?;
     // outputs the title of the first search result
     println!(
         "Title: \"{}\"",

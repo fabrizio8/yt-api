@@ -21,7 +21,7 @@ async fn main() -> Result<(), Error> {
         .video_embeddable();
 
     // perform the search
-    let result = search_list.perform().await?;
+    let result = search_list.await?;
     // outputs the video_id of the first search result
     println!(
         "Title: \"{}\"",

@@ -4,10 +4,9 @@
 //!
 //! ## Performing a search query
 //!
-//! To perform a search query, you can use the [`perform`][search_perform] function on the [`SearchList`][search_list] query.
+//! To perform a search query, you can create a [`SearchList`][search_list] query.
 //!
 //! ```rust
-//! # use std::env;
 //! # use yt_api::{
 //! #     search::SearchList,
 //! #     ApiKey,
@@ -17,7 +16,7 @@
 //! # async fn main() {
 //! let search_list = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang");
 //!
-//! let result = search_list.perform().await;
+//! let result = search_list.await;
 //! # }
 //! ```
 //!
@@ -32,7 +31,7 @@ use serde::Serialize;
 pub struct ApiKey(String);
 
 impl ApiKey {
-    pub fn new(key: impl Into<String>) -> ApiKey {
-        ApiKey(key.into())
+    pub fn new(key: impl Into<String>) -> Self {
+        Self(key.into())
     }
 }
