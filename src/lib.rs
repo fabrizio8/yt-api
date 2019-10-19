@@ -14,9 +14,7 @@
 //! #
 //! # #[runtime::main]
 //! # async fn main() {
-//! let search_list = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang");
-//!
-//! let result = search_list.await;
+//! let result = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang").await;
 //! # }
 //! ```
 //!

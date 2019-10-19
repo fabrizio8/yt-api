@@ -12,16 +12,15 @@ async fn main() -> Result<(), Error> {
     let key = ApiKey::new(&env::var("YT_API_KEY").expect("YT_API_KEY env-var not found"));
 
     // create the SearchList struct for the query "rust lang"
-    let search_list = SearchList::new(key)
+    let result = SearchList::new(key)
         .q("rust lang")
         .max_results(1)
         .item_type(ItemType::Video)
         .location(VideoLocation::new(40.73061, -73.93524))
         .location_radius("100km")
-        .video_embeddable();
+        .video_embeddable()
+        .await?;
 
-    // perform the search
-    let result = search_list.await?;
     // outputs the video_id of the first search result
     println!(
         "Title: \"{}\"",
