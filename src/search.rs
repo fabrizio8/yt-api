@@ -28,7 +28,7 @@ pub enum Error {
 
 /// request struct for the search endpoint
 pub struct SearchList {
-    future: Option<BoxFuture<'static, Result<SearchListResponse, Error>>>,
+    future: Option<BoxFuture<'static, Result<Response, Error>>>,
     data: Option<SearchListData>,
 }
 
@@ -60,7 +60,7 @@ struct SearchListData {
     #[serde(skip_serializing_if = "Option::is_none")]
     on_behalf_of_content_owner: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    order: Option<SearchOrder>,
+    order: Option<Order>,
     #[serde(skip_serializing_if = "Option::is_none")]
     page_token: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -221,7 +221,7 @@ impl SearchList {
         self
     }
 
-    pub fn order(mut self, order: impl Into<SearchOrder>) -> Self {
+    pub fn order(mut self, order: impl Into<Order>) -> Self {
         let mut data = self.data.take().unwrap();
         data.order = Some(order.into());
         self.data = Some(data);
@@ -349,7 +349,7 @@ impl SearchList {
 }
 
 impl Future for SearchList {
-    type Output = Result<SearchListResponse, Error>;
+    type Output = Result<Response, Error>;
 
     fn poll(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
         if self.future.is_none() {
@@ -412,7 +412,7 @@ impl Serialize for VideoLocation {
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub enum SearchOrder {
+pub enum Order {
     Date,
     Rating,
     Relevance,
@@ -482,7 +482,7 @@ pub enum VideoType {
 
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SearchListResponse {
+pub struct Response {
     pub kind: String,
     pub etag: String,
     pub prev_page_token: Option<String>,
