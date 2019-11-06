@@ -23,7 +23,7 @@ pub enum Error {
         source: serde_json::Error,
     },
     #[snafu(display("failed to serialize: {}", source))]
-    Serialization { source: serde_qs::Error },
+    Serialization { source: serde_urlencoded::ser::Error },
 }
 
 /// request struct for the search endpoint
@@ -387,7 +387,7 @@ impl Future for SearchList {
                 let url = format!(
                     "{}?{}",
                     Self::URL,
-                    serde_qs::to_string(&data).context(Serialization)?
+                    serde_urlencoded::to_string(&data).context(Serialization)?
                 );
                 debug!("getting {}", url);
                 let response = surf::get(&url).recv_string().await.context(Connection)?;
