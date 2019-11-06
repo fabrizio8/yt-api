@@ -532,13 +532,13 @@ pub struct PageInfo {
 pub struct SearchResult {
     pub kind: String,
     pub etag: String,
-    pub id: SearchResultId,
-    pub snippet: SearchResultSnippet,
+    pub id: Id,
+    pub snippet: Snippet,
 }
 
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SearchResultId {
+pub struct Id {
     pub kind: String,
     pub video_id: Option<String>,
     pub channel_id: Option<String>,
@@ -547,27 +547,27 @@ pub struct SearchResultId {
 
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SearchResultSnippet {
+pub struct Snippet {
     pub published_at: Option<DateTime<Utc>>,
     pub channel_id: Option<String>,
     pub title: Option<String>,
     pub description: Option<String>,
-    pub thumbnails: Option<SearchResultThumbnails>,
+    pub thumbnails: Option<Thumbnails>,
     pub channel_title: Option<String>,
     pub live_broadcast_content: Option<String>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct SearchResultThumbnails {
-    default: Option<SearchResultThumbnail>,
-    medium: Option<SearchResultThumbnail>,
-    high: Option<SearchResultThumbnail>,
-    standard: Option<SearchResultThumbnail>,
-    maxres: Option<SearchResultThumbnail>,
+pub struct Thumbnails {
+    default: Option<Thumbnail>,
+    medium: Option<Thumbnail>,
+    high: Option<Thumbnail>,
+    standard: Option<Thumbnail>,
+    maxres: Option<Thumbnail>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct SearchResultThumbnail {
+pub struct Thumbnail {
     pub url: String,
     pub width: Option<u64>,
     pub height: Option<u64>,
