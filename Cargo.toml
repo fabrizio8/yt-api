@@ -13,7 +13,7 @@ edition = "2018"
 
 [features]
 default = ["native-client", "middleware-logger"]
-native-client = ["curl-client", "wasm-client"]
+native-client = ["surf/native-client"]
 hyper-client = ["surf/hyper-client"]
 curl-client = ["surf/curl-client"]
 wasm-client = ["surf/wasm-client"]
