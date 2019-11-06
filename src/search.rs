@@ -101,7 +101,7 @@ impl SearchList {
     const URL: &'static str = "https://www.googleapis.com/youtube/v3/search";
 
     /// create struct with an [`ApiKey`](../struct.ApiKey.html)
-    ///
+    #[must_use]
     pub fn new(key: ApiKey) -> Self {
         Self {
             future: None,
@@ -141,6 +141,7 @@ impl SearchList {
         }
     }
 
+    #[must_use]
     pub fn for_content_owner(mut self) -> Self {
         let mut data = self.data.take().unwrap();
         data.for_content_owner = true;
@@ -148,6 +149,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn for_developer(mut self) -> Self {
         let mut data = self.data.take().unwrap();
         data.for_developer = true;
@@ -155,6 +157,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn for_mine(mut self) -> Self {
         let mut data = self.data.take().unwrap();
         data.for_mine = true;
@@ -162,6 +165,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn related_to_video_id(mut self, related_to_video_id: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.related_to_video_id = Some(related_to_video_id.into());
@@ -169,6 +173,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn channel_id(mut self, channel_id: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.channel_id = Some(channel_id.into());
@@ -176,6 +181,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn channel_type(mut self, channel_type: impl Into<ChannelType>) -> Self {
         let mut data = self.data.take().unwrap();
         data.channel_type = Some(channel_type.into());
@@ -183,6 +189,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn event_type(mut self, event_type: impl Into<EventType>) -> Self {
         let mut data = self.data.take().unwrap();
         data.event_type = Some(event_type.into());
@@ -190,6 +197,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn location(mut self, location: impl Into<VideoLocation>) -> Self {
         let mut data = self.data.take().unwrap();
         data.location = Some(location.into());
@@ -197,6 +205,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn location_radius(mut self, location_radius: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.location_radius = Some(location_radius.into());
@@ -204,6 +213,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn max_results(mut self, max_results: impl Into<u8>) -> Self {
         let mut data = self.data.take().unwrap();
         data.max_results = Some(max_results.into());
@@ -211,6 +221,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn on_behalf_of_content_owner(
         mut self,
         on_behalf_of_content_owner: impl Into<String>,
@@ -221,6 +232,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn order(mut self, order: impl Into<Order>) -> Self {
         let mut data = self.data.take().unwrap();
         data.order = Some(order.into());
@@ -228,6 +240,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn page_token(mut self, page_token: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.page_token = Some(page_token.into());
@@ -235,6 +248,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn published_after(mut self, published_after: impl Into<DateTime<Utc>>) -> Self {
         let mut data = self.data.take().unwrap();
         data.published_after = Some(published_after.into());
@@ -242,6 +256,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn published_before(mut self, published_before: impl Into<DateTime<Utc>>) -> Self {
         let mut data = self.data.take().unwrap();
         data.published_before = Some(published_before.into());
@@ -249,6 +264,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn q(mut self, q: impl Into<String>) -> Self {
         let mut data = self.data.unwrap();
         data.q = Some(q.into());
@@ -256,6 +272,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn region_code(mut self, region_code: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.region_code = Some(region_code.into());
@@ -263,6 +280,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn relevance_language(mut self, relevance_language: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.relevance_language = Some(relevance_language.into());
@@ -270,6 +288,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn safe_search(mut self, safe_search: impl Into<SafeSearch>) -> Self {
         let mut data = self.data.take().unwrap();
         data.safe_search = Some(safe_search.into());
@@ -277,6 +296,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn topic_id(mut self, topic_id: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.topic_id = Some(topic_id.into());
@@ -284,6 +304,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn item_type(mut self, item_type: impl Into<ItemType>) -> Self {
         let mut data = self.data.take().unwrap();
         data.item_type = Some(item_type.into());
@@ -291,6 +312,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_caption(mut self, video_caption: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_caption = Some(video_caption.into());
@@ -298,6 +320,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_category_id(mut self, video_category_id: impl Into<String>) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_category_id = Some(video_category_id.into());
@@ -305,6 +328,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_definition(mut self, video_definition: impl Into<VideoDefinition>) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_definition = Some(video_definition.into());
@@ -312,6 +336,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_dimension(mut self, video_dimension: impl Into<VideoDimension>) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_dimension = Some(video_dimension.into());
@@ -319,6 +344,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_embeddable(mut self) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_embeddable = true;
@@ -326,6 +352,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_license(mut self, video_license: impl Into<VideoLicense>) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_license = Some(video_license.into());
@@ -333,6 +360,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_syndicated(mut self) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_syndicated = true;
@@ -340,6 +368,7 @@ impl SearchList {
         self
     }
 
+    #[must_use]
     pub fn video_type(mut self, video_type: impl Into<VideoType>) -> Self {
         let mut data = self.data.take().unwrap();
         data.video_type = Some(video_type.into());
@@ -393,6 +422,7 @@ pub struct VideoLocation {
 }
 
 impl VideoLocation {
+    #[must_use]
     pub fn new(longitude: f32, latitude: f32) -> Self {
         Self {
             longitude,
