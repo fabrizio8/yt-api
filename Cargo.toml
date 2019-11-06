@@ -5,6 +5,7 @@ description = "a work in progress library to interact asynchronously with the yo
 repository = "https://gitlab.com/nycex/yt-api"
 documentation = "https://docs.rs/yt-api"
 keywords = ["youtube", "api", "async"]
+categories = ["api-bindings", "asynchronous"]
 readme = "README.md"
 license = "MIT"
 authors = ["nycex <nycex@protonmail.com>"]
