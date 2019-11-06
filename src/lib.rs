@@ -12,11 +12,9 @@
 //! #     ApiKey,
 //! # };
 //! #
-//! # fn main() {
 //! # futures::executor::block_on(async {
 //! let result = SearchList::new(ApiKey::new("your-youtube-api-key")).q("rust lang").await;
-//! # })
-//! # }
+//! # });
 //! ```
 //!
 //! [search_list]: ./search/struct.SearchList.html
