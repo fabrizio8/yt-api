@@ -28,7 +28,7 @@ use serde::Serialize;
 pub struct ApiKey(String);
 
 impl ApiKey {
-    pub fn new(key: impl Into<String>) -> Self {
-        Self(key.into())
-    }
+	pub fn new(key: impl Into<String>) -> Self {
+		Self(key.into())
+	}
 }

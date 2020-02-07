@@ -9,7 +9,7 @@
 With yt-api you can interact asynchronously with the youtube-api.
 Currently it implements the following endpoints:
  * search
- 
+
 ## example
 A basic search request with yt-api:
 
