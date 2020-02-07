@@ -2,8 +2,6 @@
 
 [![Crates.io](https://img.shields.io/crates/v/yt-api.svg)](https://crates.io/crates/yt-api)
 [![Documentation](https://docs.rs/yt-api/badge.svg)](https://docs.rs/yt-api)
-[![dependency status](https://deps.rs/repo/gitlab/nycex/yt-api/status.svg)](https://deps.rs/repo/gitlab/nycex/yt-api)
-[![pipeline status](https://gitlab.com/nycex/yt-api/badges/master/build.svg)](https://gitlab.com/nycex/yt-api/pipelines)
 
 ## about
 With yt-api you can interact asynchronously with the youtube-api.
